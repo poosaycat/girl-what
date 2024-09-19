@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disaster Management</title>
+  <link rel="stylesheet" href="style3.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My App Bar</title>
+  </head>
+  <body>
+    <header>
+      <div class="app-bar">
+        <h1>Logo</h1>
+        <nav>
+          <a href="emergency planning.html">
+            <button class="nav-btn emergency-planning">Emergency Planning</button>
+          </a>
+          <a href="disaster management.html">
+          <button class="nav-btn disaster-management">Disaster Management</button>
+          </a>
+          <button class="nav-btn resources">Resources</button>
+          <button class="nav-btn charity-programs">Charity Programs</button>
+          <button class="nav-btnn new-button">Send Donations</button> 
+        </nav>
+        
+      </div>
+    </header>
+</head>
+<body>
+
+</div>
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <ul>
+        <li><button onclick="loadContent('drought')">Drought</button></li>
+        <li><button onclick="loadContent('earthquake')">Earthquake</button></li>
+        <li><button onclick="loadContent('fire')">Fire</button></li>
+        <li><button onclick="loadContent('flood')">Flood</button></li>
+        <li><button onclick="loadContent('industrial-accidents')">Industrial Accidents</button></li>
+        <li><button onclick="loadContent('tsunami')">Tsunami</button></li>
+        <li><button onclick="loadContent('typhoon')">Typhoon</button></li>
+        <li><button onclick="loadContent('volcanic-eruption')">Volcanic Eruption</button></li>
+      </ul>
+    </div>
+
+
+   <!-- Main Content -->
+<div class="main-content" id="content">
+  <h2>Disaster Management</h2>
+  <img src="https://aihms.in/blog/wp-content/uploads/2022/01/dis1.jpg">
+  <p>Effective disaster management is crucial for ensuring safety and minimizing impact during emergencies. Our approach focuses on the following key aspects:</p>
+  <ul>
+    <li><strong>Preparedness:</strong> Develop and implement plans and procedures to respond quickly and effectively to various types of disasters. This includes training, conducting drills, and having necessary resources readily available.</li>
+    <li><strong>Response:</strong> Execute the prepared plans with coordination among emergency services, authorities, and community members. Ensure timely communication and deployment of resources to manage the situation.</li>
+    <li><strong>Recovery:</strong> Assist affected individuals and communities in rebuilding and restoring normalcy. Evaluate the response and recovery process to improve future disaster management efforts.</li>
+  </ul>
+  <p>By focusing on these areas, we aim to minimize risks, protect lives, and support resilient communities. Remember, preparation is key to survival.</p>
+</div>
+
+
+  <script>
+    function loadContent(type) {
+      const content = document.getElementById('content');
+      
+      let htmlContent = '';
+      
+      switch (type) {
+        case 'drought':
+          htmlContent = `
+            <h2>Drought</h2>
+            <img src="https://images.nationalgeographic.org/image/upload/t_edhub_resource_related_resources/v1638884752/EducationHub/photos/big-dry.jpg">
+            <h3>What to Do BEFORE a Drought</h3>
+            
+            <ul>
+              <li>Conserve water. Avoid using water unnecessarily.</li>
+              <li>Store water in containers to last during the drought.</li>
+              <li>Avoid outdoor water use, such as watering lawns or washing cars.</li>
+              <li>Fix leaks immediately to prevent water wastage.</li>
+              <li>Stay informed about local drought alerts and regulations.</li>
+            </ul>
+
+             <h3>What to Do DURING a Drought</h3>
+                <ul>
+                    <li>Follow water conservation orders and restrictions.</li>
+                    <li>Minimize outdoor water use (e.g., avoid watering lawns).</li>
+                    <li>Reuse water when possible (e.g., gray water for gardening).</li>
+                </ul>
+                <h3>What to Do AFTER a Drought</h3>
+                <ul>
+                    <li>Continue conserving water to replenish local supplies.</li>
+                    <li>Help assess and restore affected ecosystems.</li>
+                </ul>
+          `;
+          break;
+        case 'earthquake':
+          htmlContent = `
+            <h2>Earthquake</h2>
+            <img src="https://gdb.voanews.com/bcb4d045-fd8a-44fc-b9cb-5667f48cb850_w1200_r1.jpg">
+            <h3>What to Do BEFORE an Earthquake</h3>
+            <ul>
+              <li>Drop, cover, and hold on until the shaking stops.</li>
+              <li>If indoors, stay away from windows and exterior walls.</li>
+              <li>If outdoors, move to an open area away from buildings and power lines.</li>
+              <li>After the shaking, check for injuries and hazards like gas leaks or fires.</li>
+              <li>Be prepared for aftershocks.</li>
+
+              <h3>What to Do DURING an Earthquake</h3>
+                <ul>
+                    <li>Drop, cover, and hold on under a sturdy piece of furniture.</li>
+                    <li>Stay away from windows, glass, and heavy objects.</li>
+                    <li>If outdoors, move to an open area away from buildings.</li>
+                </ul>
+                <h3>What to Do AFTER an Earthquake</h3>
+                <ul>
+                    <li>Check yourself and others for injuries.</li>
+                    <li>Be prepared for aftershocks.</li>
+                    <li>Avoid using matches or lighters in case of gas leaks.</li>
+                </ul>
+            </ul>
+          `;
+          break;
+        case 'fire':
+          htmlContent = `
+            <h2>Fire</h2>
+            <img src= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAV2M5Q8kSnrq73oTfVYkFHYkiqAWy11yLBg&s">
+            <h3>What to Do BEFORE a Fire</h3>
+                <ul>
+                    <li>Install smoke alarms on every level of your home.</li>
+                    <li>Plan and practice a home fire escape route.</li>
+                    <li>Keep fire extinguishers readily available.</li>
+                </ul>
+                <h3>What to Do DURING a Fire</h3>
+                <ul>
+                    <li>Get out immediately if there is a fire in your home.</li>
+                    <li>Crawl low under the smoke to exit.</li>
+                    <li>Call 911 after you have safely exited.</li>
+                </ul>
+                <h3>What to Do AFTER a Fire</h3>
+                <ul>
+                    <li>Do not enter your home until authorities say it is safe.</li>
+                    <li>Contact your insurance provider for damage claims.</li>
+                    <li>Have professionals inspect the property before returning.</li>
+                </ul>
+          `;
+          break;
+        case 'flood':
+          htmlContent = `
+            <h2>Flood</h2>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPd85eRkyPf6Orbso33CcnG7R8V3RH7uJwyg&s">
+           <h3>What to Do BEFORE a Flood</h3>
+                <ul>
+                    <li>Know if you live in a flood-prone area.</li>
+                    <li>Store important documents in a waterproof container.</li>
+                    <li>Have an evacuation plan ready.</li>
+                </ul>
+                <h3>What to Do DURING a Flood</h3>
+                <ul>
+                    <li>Evacuate if authorities issue an order.</li>
+                    <li>Avoid walking or driving through floodwaters.</li>
+                    <li>Move to higher ground.</li>
+                </ul>
+                <h3>What to Do AFTER a Flood</h3>
+                <ul>
+                    <li>Wait for authorities to declare the area safe before returning.</li>
+                    <li>Beware of contaminated water and debris.</li>
+                    <li>Take photos of any damage for insurance claims.</li>
+                </ul>
+          `;
+          break;
+        case 'industrial-accidents':
+          htmlContent = `
+            <h2>Industrial Accidents</h2>
+            <img src= "https://files01.pna.gov.ph/ograph/2022/10/04/qc-construction-accident-1.jpg">
+            <h3>What to Do BEFORE an Industrial Accident</h3>
+                <ul>
+                    <li>Know emergency procedures for the industrial facility.</li>
+                    <li>Familiarize yourself with evacuation routes.</li>
+                    <li>Ensure the availability of protective gear (masks, gloves).</li>
+                </ul>
+                <h3>What to Do DURING an Industrial Accident</h3>
+                <ul>
+                    <li>Evacuate the area immediately if told to do so.</li>
+                    <li>Avoid breathing in fumes or coming into contact with hazardous substances.</li>
+                    <li>Listen to emergency alerts for updates.</li>
+                </ul>
+                <h3>What to Do AFTER an Industrial Accident</h3>
+                <ul>
+                    <li>Avoid re-entering the area until it's deemed safe.</li>
+                    <li>Seek medical attention if exposed to harmful materials.</li>
+                    <li>Follow clean-up guidelines from local authorities.</li>
+                </ul>
+          `;
+          break;
+        case 'tsunami':
+          htmlContent = `
+            <h2>Tsunami</h2>
+            <img src= "https://dims.apnews.com/dims4/default/c1e9c81/2147483647/strip/true/crop/3000x2001+0+0/resize/599x400!/quality/90/?url=https%3A%2F%2Fstorage.googleapis.com%2Fafs-prod%2Fmedia%2F0b5774a77bee45598c2684d01ec3ef79%2F3000.jpeg">
+           <h3>What to Do BEFORE a Tsunami</h3>
+                <ul>
+                    <li>Know if you live in a tsunami hazard zone.</li>
+                    <li>Have an evacuation plan and route ready.</li>
+                    <li>Pay attention to tsunami alerts and warnings.</li>
+                </ul>
+                <h3>What to Do DRUING a Tsunami</h3>
+                <ul>
+                    <li>Immediately move to higher ground or inland.</li>
+                    <li>Avoid the coast and low-lying areas.</li>
+                    <li>Do not return to the shore until authorities say it's safe.</li>
+                </ul>
+                <h3>What to Do AFTER a Tsunami</h3>
+                <ul>
+                    <li>Stay away from floodwaters and debris.</li>
+                    <li>Help with search and rescue efforts if it's safe to do so.</li>
+                    <li>Document any damage for insurance claims.</li>
+                </ul>
+          `;
+          break;
+        case 'typhoon':
+          htmlContent = `
+            <h2>Typhoon</h2>
+            <img src= "https://www.aljazeera.com/wp-content/uploads/2024/07/AFP__20240724__364U3AK__v1__Preview__PhilippinesWeatherTyphoon-1721798033.jpg?resize=1170%2C780&quality=80">
+            <h3>What to Do BEFORE a Typhoon</h3>
+                <ul>
+                    <li>Secure outdoor objects that could become projectiles.</li>
+                    <li>Stock up on emergency supplies, such as water and food.</li>
+                    <li>Know evacuation routes and shelter locations.</li>
+                </ul>
+                <h3>What to Do DURING a Typhoon</h3>
+                <ul>
+                    <li>Stay indoors and away from windows.</li>
+                    <li>Monitor weather updates from authorities.</li>
+                    <li>Be ready to evacuate if ordered to do so.</li>
+                </ul>
+                <h3>What to Do AFTER a Typhoon</h3>
+                <ul>
+                    <li>Avoid floodwaters and fallen power lines.</li>
+                    <li>Help neighbors and community members if it's safe.</li>
+                    <li>Assess and report damage to your property.</li>
+                </ul>
+          `;
+          break;
+        case 'volcanic-eruption':
+          htmlContent = `
+            <h2>Volcanic Eruption</h2>
+            <img src="https://www.aljazeera.com/wp-content/uploads/2018/01/1d7793cc95cb402c9ace56479894c3b9_8.jpeg?resize=1170%2C780&quality=80">
+           <h3>What to Do BEFORE a Volcanic Eruption</h3>
+                <ul>
+                    <li>Know if you live near an active volcano.</li>
+                    <li>Have an evacuation plan and emergency supplies.</li>
+                    <li>Prepare a mask to protect against ash inhalation.</li>
+                </ul>
+                <h3>What to Do DURING a Volcanic Eruption</h3>
+                <ul>
+                    <li>Evacuate immediately if authorities issue an order.</li>
+                    <li>Stay indoors and avoid breathing ash or fumes.</li>
+                    <li>Listen for updates from local authorities.</li>
+                </ul>
+                <h3>What to Do AFTER a Volcanic Eruption</h3>
+                <ul>
+                    <li>Avoid areas downwind of the eruption site.</li>
+                    <li>Help clear ash from roofs and properties safely.</li>
+                    <li>Seek medical attention if you experience respiratory issues.</li>
+                </ul>
+                
+          `;
+          break;
+        default:
+          htmlContent = '<h2>Disaster Management</h2><p>Prepare. Act. Survive.</p>';
+      }
+ // Add Hotline and Donate buttons at the end of each disaster section
+ htmlContent += `
+          <div class="button-container">
+            <a href="#resources-section" class="hotline-button">Hotline</a>
+            <a href="#send-donation" class="donate-button">Donate</a>
+          </div>
+        `;
+      
+      content.innerHTML = htmlContent;
+    }
+  </script>
+</body>
+</html>
