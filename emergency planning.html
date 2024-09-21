@@ -26,17 +26,17 @@
   </header>
   <script>
     function loadContent(contentId) {
-     
+      // Hide all content
       document.querySelectorAll('.content-section').forEach(section => {
         section.style.display = 'none';
       });
-      
+      // Show selected content
       document.getElementById(contentId).style.display = 'block';
     }
   </script>
 
   <div class="container">
-    
+    <!-- Sidebar -->
     <div class="sidebar">
       <ul>
         <li><button onclick="loadContent('why-planning')">Why Emergency Planning Matters</button></li>
@@ -46,10 +46,10 @@
       </ul>
     </div>
 
-    
+    <!-- Main Content -->
     <div class="main-content">
 
-            
+            <!-- Why Emergency Planning Matters -->
             <div id="why-planning" class="content-section" style="display: block;">
                 <h3>Why Emergency Planning Matters</h3>
                 <img src="https://media.istockphoto.com/id/1328295373/photo/mother-explaining-to-her-family-the-emergency-assembly-point.jpg?s=612x612&w=0&k=20&c=daWM7NOmCoiOyX-azNx2RpuWmE5tGvMiIgq-SYJcecA=">
@@ -107,7 +107,7 @@
 
                     </div>
             
-                   
+                    <!-- Existing Steps -->
                     <div class="step-content" id="step-1">
                         <h3>Step 1 - Identify Escape Routes</h3>
                         <p>Plan emergency exits from each room of your home...</p>
@@ -166,7 +166,7 @@
                         <input type="text" id="ambulance"><br>
                         <label for="other">Other:</label>
                         <input type="text" id="other"><br>
-                        
+                        <!-- Other fields... -->
                     </div>
             
                     <div class="button-container">
@@ -185,7 +185,7 @@
                     document.querySelectorAll('.step-btn').forEach(btn => btn.classList.remove('active'));
                     document.querySelector(`.step-btn:nth-child(${stepNumber})`).classList.add('active');
             
-                    loadData(); 
+                    loadData(); // Load data whenever a step is shown
                 }
             
                 function saveData() {
@@ -204,7 +204,7 @@
                         police: document.getElementById('police').value,
                         ambulance: document.getElementById('ambulance').value,
                         other: document.getElementById('other').value
-                        
+                        // Add more fields as needed
                     };
             
                     localStorage.setItem('emergencyPlan', JSON.stringify(data));
@@ -228,23 +228,9 @@
                         document.getElementById('police').value = data.police || '';
                         document.getElementById('ambulance').value = data.ambulance || '';
                         document.getElementById('other').value = data.other || '';
-                       
+                        // Load more fields as needed
                     }
                 }
-                <div class="contact-section">
-                        <h2>Contact Us</h2>
-                        <div class="contact-container">
-                          <div class="contact-info">
-                            <p><strong>Phone:</strong> +123 456 7890</p>
-                            <p><strong>Email:</strong> contact@charity.org</p>
-                            <p><strong>Address:</strong> 123 Charity Lane, Goodville, GV 12345</p>
-                          </div>
-                          <div class="contact-social">
-                            <p><strong>Follow Us:</strong></p>
-                            <a href="https://www.facebook.com/charity" class="contact-link">Facebook</a> |
-                            <a href="https://twitter.com/charity" class="contact-link">Twitter</a> |
-                            <a href="https://www.instagram.com/charity" class="contact-link">Instagram</a>
-                          </div>
             </script>
             
               <div id="step-by-step-guides" class="content-section" style="display: none;">
@@ -285,8 +271,5 @@
                         <a href="https://assets.publishing.service.gov.uk/media/5a74fe7be5274a59fa71692d/community_emergency_plan_toolkit.pdf" target="_blank">Community Emergency Plan</a>
                       </p>
                       </div>
-
-                    
-                        </div>
-                      </div>
+  
 
