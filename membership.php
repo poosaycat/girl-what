@@ -1,17 +1,34 @@
 <?php
-// Start the session to access session variables
+
 session_start();
 
-// Check if the user is logged in by checking the name and birthdate passed from the login page
 if (!isset($_GET['name']) || !isset($_GET['birthdate'])) {
     echo "Access denied. Please log in.";
     exit();
 }
 
-// Retrieve the user's name and birthdate from the URL parameters
+
 $user_name = htmlspecialchars($_GET['name']);
 $user_birthdate = htmlspecialchars($_GET['birthdate']);
-$user_email = isset($_GET['email']) ? htmlspecialchars($_GET['email']) : 'Not provided'; // Ensure email is optional
+
+
+$message = '';
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
+    $current_password = $_POST['current-password'];
+    $new_password = $_POST['new-password'];
+    $confirm_password = $_POST['confirm-password'];
+
+    
+    if ($new_password === $confirm_password) {
+       
+        $message = "Password updated successfully!";
+    } else {
+        $message = "New password and confirmation do not match.";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,133 +37,101 @@ $user_email = isset($_GET['email']) ? htmlspecialchars($_GET['email']) : 'Not pr
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Membership Page</title>
-    <link rel="stylesheet" href="membership.css"> <!-- Link to separate CSS file -->
-    <script>
-        function navigateTo(page) {
-            window.location.href = page;
-        }
-
-        function showMonthlyGivingForm() {
-            document.getElementById('monthly-giving-step-1').style.display = 'block';
-            document.getElementById('sections').style.display = 'none';
-        }
-
-        function goToStep2() {
-            document.getElementById('monthly-giving-step-1').style.display = 'none';
-            document.getElementById('monthly-giving-step-2').style.display = 'block';
-        }
-
-        function goToStep3() {
-            document.getElementById('monthly-giving-step-2').style.display = 'none';
-            document.getElementById('monthly-giving-step-3').style.display = 'block';
-        }
-
-        function confirmPayment() {
-            alert('Payment method confirmed. Thank you!');
-        }
-
-        function showEditAccountForm() {
-            document.getElementById('edit-account-info').style.display = 'block';
-        }
-
-        function hideEditForm() {
-            document.getElementById('edit-account-info').style.display = 'none';
-        }
-    </script>
+    <link rel="stylesheet" href="membership.css"> 
 </head>
 <body>
     <div class="app-bar">
         <a href="mainpage.html">
-            <div><img src="assets/aid.png" alt="Logo"></div>
+            <div class="logo"><img src="assets/aid.png" alt="Logo"></div>
         </a>
         <nav>
-            <button class="nav-btn new-button" onclick="window.location.href='../PrelimWEBSITE-main/donations.php';">Send Donations</button>
+            <button class="nav-btn" onclick="openModal()">My Account</button>
+            <button class="nav-btn" onclick="window.location.href='../PrelimWEBSITE-main/donations.php';">Send Donations</button>
+            <button class="nav-btn logout-button" onclick="window.location.href='mainpage.html';">Log Out</button>
         </nav>
     </div>
-
-    <div class="container">
-        <h1>Welcome, <?php echo $user_name; ?>!</h1>
-        <p>Your registered email is: <?php echo $user_email; ?></p>
-        <p>Your birthdate is: <?php echo $user_birthdate; ?></p>
-
-        <div id="sections" class="sections">
-            <div class="card" onclick="navigateTo('account_summary.php')">
-                <h2>Account Summary</h2>
-                <p>Here you'll see your donation activity.</p>
-            </div>
-            <div class="card" onclick="showMonthlyGivingForm()">
-                <h2>Monthly Giving</h2>
-                <p>Manage your monthly subscription and giving settings here.</p>
-            </div>
-            <div class="card" onclick="showEditAccountForm()">
-                <h2>Edit Account Information</h2>
-                <p>Update your personal details and change your password.</p>
+    
+    <header>
+        <div class="main-image">
+            <img src="assets/main-image.jpeg" alt="Your Image">
+            <div class="background-overlay"></div>
+            <div class="text-overlay">
+                <img src="assets/aid.png" alt="Logo Overlay">
             </div>
         </div>
+    </header>
 
-        <!-- Edit Account Information Section -->
-        <div id="edit-account-info" style="display:none;">
-            <h2>Edit Account Information</h2>
-            <form id="edit-account-form" action="update_account.php" method="POST">
-                <label>Name:</label>
-                <input type="text" name="name" value="<?php echo $user_name; ?>" required><br>
-                <label>Email Address:</label>
-                <input type="email" name="email" value="<?php echo $user_email; ?>" required><br>
-                <label>Phone Number:</label>
-                <input type="text" name="phone" required><br>
-                <label>Birthday:</label>
-                <input type="date" name="birthdate" value="<?php echo $user_birthdate; ?>" required><br>
-                <label>New Password:</label>
-                <input type="password" name="new_password" placeholder="Leave blank to keep current password"><br>
-                <label>Confirm Password:</label>
-                <input type="password" name="confirm_password"><br>
-                <button type="submit">Save Changes</button>
-                <button type="button" onclick="hideEditForm()">Cancel</button>
-            </form>
-        </div>
-
-        <!-- Step 1: Choose an Amount -->
-        <div id="monthly-giving-step-1" style="display:none;">
-            <h2>Select Monthly Subscription Amount</h2>
-            <button onclick="goToStep2()">200</button>
-            <button onclick="goToStep2()">500</button>
-            <button onclick="goToStep2()">1000</button>
-            <button onclick="goToStep2()">Other Amount</button>
-        </div>
-
-        <!-- Step 2: Fill in Personal Information -->
-        <div id="monthly-giving-step-2" style="display:none;">
-            <h2>Step 2: Fill in your Information</h2>
-            <form id="monthly-giving-form">
-                <label>First Name:</label>
-                <input type="text" name="first_name" required><br>
-                <label>Last Name:</label>
-                <input type="text" name="last_name" required><br>
-                <label>Email Address:</label>
-                <input type="email" name="email" required><br>
-                <label>Phone Number:</label>
-                <input type="text" name="phone" required><br>
-                <label>Birthdate (MM/DD/YYYY):</label>
-                <input type="text" name="birthdate" required><br>
-                <label>Address:</label>
-                <input type="text" name="address" placeholder="House number/Unit, Street, Barangay" required><br>
-                <label>City:</label>
-                <input type="text" name="city" required><br>
-                <label>Province:</label>
-                <input type="text" name="province" required><br>
-                <label>ZIP Code:</label>
-                <input type="text" name="zip_code" required><br>
-                <button type="button" onclick="goToStep3()">Continue</button>
-            </form>
-        </div>
-
-        <!-- Step 3: Payment Method -->
-        <div id="monthly-giving-step-3" style="display:none;">
-            <h2>Step 3: Select Your Payment Method</h2>
-            <button onclick="confirmPayment()">Credit Card</button>
-            <button onclick="confirmPayment()">Gcash</button>
-            <button onclick="confirmPayment()">Online Payment</button>
+    <div class="sub-section">
+        <h2>SUBSCRIPTION PLANS</h2>
+        <div class="sub-container">
+            <div class="plans-container">
+                <div class="plan-box">
+                    <h3>₱250</h3>
+                    <p>Support our programs with a monthly contribution of ₱250.</p>
+                    <button class="join-button" onclick="location.href='payment.php?plan=250&name=<?php echo urlencode($user_name); ?>&birthdate=<?php echo urlencode($user_birthdate); ?>'">JOIN</button>
+                </div>
+                <div class="plan-box">
+                    <h3>₱500</h3>
+                    <p>Provide greater support with a monthly contribution of ₱500.</p>
+                    <button class="join-button" onclick="location.href='payment.php?plan=500&name=<?php echo urlencode($user_name); ?>&birthdate=<?php echo urlencode($user_birthdate); ?>'">JOIN</button>
+                </div>
+                <div class="plan-box">
+                    <h3>₱1000</h3>
+                    <p>Make an impactful contribution with ₱1000 a month.</p>
+                    <button class="join-button" onclick="location.href='payment.php?plan=1000&name=<?php echo urlencode($user_name); ?>&birthdate=<?php echo urlencode($user_birthdate); ?>'">JOIN</button>
+                </div>
+            </div>
         </div>
     </div>
+
+    <div id="edit-info" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Edit Your Information</h2>
+
+            
+            <?php if ($message): ?>
+                <p><?php echo $message; ?></p>
+            <?php endif; ?>
+
+            <form method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="<?php echo $user_name; ?>" readonly>
+
+                <label for="birthdate">Birthdate:</label>
+                <input type="date" id="birthdate" name="birthdate" value="<?php echo $user_birthdate; ?>" readonly>
+
+                <h3>Change Password</h3>
+                <label for="current-password">Current Password:</label>
+                <input type="password" id="current-password" name="current-password" required>
+
+                <label for="new-password">New Password:</label>
+                <input type="password" id="new-password" name="new-password" required>
+
+                <label for="confirm-password">Confirm New Password:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+
+                <button type="submit" class="nav-btn new-button">Update Information</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        
+        function openModal() {
+            document.getElementById('edit-info').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('edit-info').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById('edit-info');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>
