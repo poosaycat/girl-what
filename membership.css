@@ -610,4 +610,62 @@ button.new-button:hover {
       width: 90%;
   }
 }
+/* Plans Section */
+.plans-section {
+  margin-bottom: 60px; /* Space below plans section */
+}
 
+/* Contact Section */
+.contact-section {
+  padding: 20px;
+  background-color: #8b3232;
+  color: #F5F7F8;
+  border-radius: 8px;
+  margin-top: 20px;
+  clear: both; /* Ensures it doesn’t overlap with floated elements above */
+}
+
+/* Contact Container */
+.contact-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Contact Info and Social */
+.contact-info, .contact-social {
+  flex: 1;
+  min-width: 300px;
+  max-width: 45%;
+}
+
+/* Text Styling */
+.contact-info p, .contact-social p {
+  font-family: 'UbuntuReg';
+  margin: 10px 0;
+  font-size: 20px;
+}
+
+.contact-link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .contact-info, .contact-social {
+    max-width: 100%;
+  }
+}
