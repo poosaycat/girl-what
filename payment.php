@@ -15,10 +15,10 @@ class Receipt {
     }
 
     public function generateReceipt() {
-        // Generate a random 11-digit reference number
+        
         $referenceNo = rand(10000000000, 99999999999);
 
-        // Generate the receipt HTML
+        
         $receiptHtml = "
             <h2>Official Receipt</h2>
             <div class='receipt-info'>
@@ -34,47 +34,47 @@ class Receipt {
             </div>
         ";
 
-        return $receiptHtml; // Return the receipt HTML for display
+        return $receiptHtml; 
     }
 }
 
-// Check if form is submitted
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Sanitize and retrieve form data
+    
     $first_name = htmlspecialchars($_POST['first_name']);
     $last_name = htmlspecialchars($_POST['last_name']);
     $email = htmlspecialchars($_POST['email']);
     $amount = htmlspecialchars($_POST['amount']);
     $payment_method = htmlspecialchars($_POST['payment_method']);
-    $contact_info = htmlspecialchars($_POST['contact_info']); // Either card number or contact number
+    $contact_info = htmlspecialchars($_POST['contact_info']); 
 
-    // Validate first name and last name (letters only)
+    
     if (!preg_match("/^[a-zA-Z]+$/", $first_name) || !preg_match("/^[a-zA-Z]+$/", $last_name)) {
         echo "<h2>Error: First and last names should contain letters only (no special characters or numbers).</h2>";
         exit();
     }
 
-    // Validate contact_info (must be numeric, either for card number or mobile number)
+    
     if (!preg_match("/^[0-9]+$/", str_replace('-', '', $contact_info))) {
         echo "<h2>Error: Contact information must be numeric (no letters or special characters allowed).</h2>";
         exit();
     }
 
-    // Create the bank account number (for example purposes, you may want to change this logic)
-    $bankacc = "1234567890"; // Replace with actual logic for bank account number
+    
+    $bankacc = "1234567890"; 
 
-    // Store the user details in session variables for the receipt
+    
     $_SESSION['full_name'] = "$first_name $last_name";
     $_SESSION['bankacc'] = $bankacc;
     $_SESSION['amount'] = $amount;
     $_SESSION['email'] = $email;
 
-    // Create the receipt instance
+    
     $receipt = new Receipt($_SESSION['full_name'], $_SESSION['bankacc'], $_SESSION['amount'], $_SESSION['email']);
     
-    // Redirect to receipt page
+    
     header("Location: receipt-display.php");
-    exit(); // Always call exit after a header redirect
+    exit(); 
 }
 
 ?>
@@ -86,14 +86,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Form</title>
-    <link rel="stylesheet" href="payment.css"> <!-- Link to external CSS -->
+    <link rel="stylesheet" href="payment.css"> 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class="wrapper">
         <h2>Payment Form</h2>
         <form action="" method="post">
-            <!-- Account Information Start -->
+            
             <h4>Account Information</h4>
             <div class="input_group">
                 <div class="input_box">
@@ -110,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
 
-            <!-- Payment Details Start -->
+            
             <div class="input_group">
                 <div class="input_box">
                     <h4>Payment Method</h4>
@@ -143,7 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <i class="fa fa-money icon"></i>
                 </div>
             </div>
-            <!-- Payment Details End -->
+            
 
             <div class="input_group">
                 <div class="input_box">
