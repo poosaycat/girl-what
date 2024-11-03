@@ -9,17 +9,15 @@
 <body>
   <header>
     <div class="app-bar">
-      <h1>Logo</h1>
+      <a href="mainpage.html">
+        <div><img src="assets/aid.png" alt="Logo"></div>
+      </a>
       <nav>
-        <a href="emergency planning.html">
-          <button class="nav-btn emergency-planning">Emergency Planning</button>
-        </a>
-        <a href="disaster management.html">
-        <button class="nav-btn disaster-management">Disaster Management</button>
-        </a>
-        <button class="nav-btn resources">Resources</button>
-        <button class="nav-btn charity-programs">Charity Programs</button>
-        <button class="nav-btnn new-button">Send Donations</button> 
+        <button class="nav-btn emergency-planning"onclick="window.location.href='emergency planning.html';">Emergency Planning</button>    
+        <button class="nav-btn disaster-management"onclick="window.location.href='disaster management.html';">Disaster Management</button>
+        <button class="nav-btn resources" onclick="window.location.href='resources.html';">Resources</button>
+        <button class="nav-btn charity-programs" onclick="window.location.href='charity.html';">Charity Programs</button>
+        <button class="nav-btnn new-button" onclick="window.location.href='../PrelimWEBSITE-main/donations.php';">Send Donations</button>
       </nav>
       
     </div>
@@ -104,7 +102,6 @@
                         <button class="step-btn" onclick="showStep(4)">Step 4</button>
                         <button class="step-btn" onclick="showStep(5)">Step 5</button>
                         <button class="step-btn" onclick="showStep(6)">Step 6</button>
-
                     </div>
             
                     <!-- Existing Steps -->
@@ -128,7 +125,7 @@
             
                     <div class="step-content" id="step-3" style="display: none;">
                         <h3>Step 3 - Plan for Children</h3>
-                        <p>If an emergency occurs during school hours, you may need someone else to pick up your children from daycare or school. Make sure the school or daycare has up-to-date contact information for both yourself and other adults whom you have authorized on the pick-up list.</p>
+                        <p>If an emergency occurs during school hours, you may need someone else to pick up your children from daycare or school...</p>
                         <label for="no-children">
                             <input type="checkbox" id="no-children"> I don't have children
                         </label><br><br>
@@ -166,26 +163,35 @@
                         <input type="text" id="ambulance"><br>
                         <label for="other">Other:</label>
                         <input type="text" id="other"><br>
-                        <!-- Other fields... -->
                     </div>
             
                     <div class="button-container">
-                        <button onclick="showStep(5)">Previous</button>
-                        <button onclick="showStep(6)">Next</button>
+                        <button onclick="showStep(currentStep - 1)" id="prev-btn">Previous</button>
+                        <button onclick="showStep(currentStep + 1)" id="next-btn">Next</button>
                         <button id="save-btn" onclick="saveData()">Save</button>
                     </div>
                 </div>
             </div>
             
             <script>
+                let currentStep = 1;
+            
                 function showStep(stepNumber) {
+                    // Ensure step number is within bounds
+                    if (stepNumber < 1 || stepNumber > 6) return;
+            
+                    // Hide all steps
                     document.querySelectorAll('.step-content').forEach(content => content.style.display = 'none');
+            
+                    // Show the selected step
                     document.getElementById(`step-${stepNumber}`).style.display = 'block';
-                    
+            
+                    // Update the current step
+                    currentStep = stepNumber;
+            
+                    // Update button states
                     document.querySelectorAll('.step-btn').forEach(btn => btn.classList.remove('active'));
                     document.querySelector(`.step-btn:nth-child(${stepNumber})`).classList.add('active');
-            
-                    loadData(); // Load data whenever a step is shown
                 }
             
                 function saveData() {
@@ -204,7 +210,6 @@
                         police: document.getElementById('police').value,
                         ambulance: document.getElementById('ambulance').value,
                         other: document.getElementById('other').value
-                        // Add more fields as needed
                     };
             
                     localStorage.setItem('emergencyPlan', JSON.stringify(data));
@@ -228,10 +233,14 @@
                         document.getElementById('police').value = data.police || '';
                         document.getElementById('ambulance').value = data.ambulance || '';
                         document.getElementById('other').value = data.other || '';
-                        // Load more fields as needed
                     }
                 }
+            
+                // Initialize by showing the first step and loading data
+                showStep(currentStep);
+                loadData();
             </script>
+            
             
               <div id="step-by-step-guides" class="content-section" style="display: none;">
                 <h3>Step-by-Step Guides for Emergency Plans</h3>
