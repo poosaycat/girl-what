@@ -9,17 +9,15 @@
 <body>
   <header>
     <div class="app-bar">
-      <h1>Logo</h1>
+      <a href="mainpage.html">
+        <div><img src="assets/aid.png" alt="Logo"></div>
+      </a>
       <nav>
-        <a href="emergency planning.html">
-          <button class="nav-btn emergency-planning">Emergency Planning</button>
-        </a>
-        <a href="disaster management.html">
-          <button class="nav-btn disaster-management">Disaster Management</button>
-        </a>
-        <button class="nav-btn resources">Resources</button>
-        <button class="nav-btn charity-programs">Charity Programs</button>
-        <button class="nav-btn new-button">Send Donations</button> 
+        <button class="nav-btn emergency-planning"onclick="window.location.href='emergency planning.html';">Emergency Planning</button>    
+        <button class="nav-btn disaster-management"onclick="window.location.href='disaster management.html';">Disaster Management</button>
+        <button class="nav-btn resources" onclick="window.location.href='resources.html';">Resources</button>
+        <button class="nav-btn charity-programs" onclick="window.location.href='charity.html';">Charity Programs</button>
+        <button class="nav-btnn new-button" onclick="window.location.href='../PrelimWEBSITE-main/donations.php';">Send Donations</button>
       </nav>
     </div>
   </header>
@@ -266,7 +264,7 @@
       htmlContent += `
         <div class="language-buttons">
           <button onclick="changeLanguage('en')">English</button>
-          <button onclick="changeLanguage('tl')">Tagalog</button>
+          <button onclick="changeLanguage('tl')">Filipino</button>
         </div>`;
 
       content.innerHTML = htmlContent;
@@ -374,7 +372,7 @@
                 <li>Kumuha ng mga larawan ng anumang pinsala para sa mga claims ng insurance.</li>
               </ul>`;
             break;
-          // Add other disaster cases in Tagalog here
+         
           case 'industrial accidents':
             htmlContent = `
               <h2>Industrial Accidents</h2>
@@ -480,7 +478,7 @@
       htmlContent += `
         <div class="language-buttons">
           <button onclick="changeLanguage('en')">English</button>
-          <button onclick="changeLanguage('tl')">Tagalog</button>
+          <button onclick="changeLanguage('tl')">Filipino</button>
         </div>`;
 
       content.innerHTML = htmlContent;
